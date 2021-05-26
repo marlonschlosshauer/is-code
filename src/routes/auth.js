@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 const router = require('express').Router();
-const verify = require('./verify');
 const jwt = require('jsonwebtoken');
 const { v4: uuid } = require('uuid');
 

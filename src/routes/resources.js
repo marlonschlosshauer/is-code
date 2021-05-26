@@ -3,7 +3,6 @@ const { v4: uuid } = require('uuid');
 const { reminders } = require('../storage');
 const verify = require('./verify');
 
-
 router.get('/reminders', verify, (req, res) => {
 	res.status(200).send(reminders.find());
 });
