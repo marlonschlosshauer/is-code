@@ -34,6 +34,15 @@ Content-Type: application/json
 }
 
 
-# Get all users
-GET :url/api/users
+# Get all reminderes
+GET :url/api/reminders
 authorization: :token
+
+# Add reminder
+POST :url/api/reminders
+authorization: :token
+Content-Type: application/json
+
+{
+	"message": "Write example oauth application"
+}
