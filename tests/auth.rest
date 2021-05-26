@@ -1,0 +1,22 @@
+:url = http://localhost:3000/api
+:email = "email": "example@localhost.com"
+:password = "password": "hunter3"
+
+GET :url
+
+# Bad register attempt
+POST :url/register
+Content-Type: application/json
+
+# Successful register attempt
+POST :url/register
+Content-Type: application/json
+
+{
+    :email,
+    :password
+}
+
+# Login
+POST :url/login
+Content-Type: application/json
