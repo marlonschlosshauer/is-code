@@ -2,6 +2,9 @@
 :email = "email": "example@localhost.com"
 :password = "password": "hunter3"
 
+:token := restclient-auth-token
+
+# vital check
 GET :url
 
 # Bad register attempt
@@ -30,5 +33,7 @@ Content-Type: application/json
     :password
 }
 
+
 # Get all users
 GET :url/users
+authorization: :token
