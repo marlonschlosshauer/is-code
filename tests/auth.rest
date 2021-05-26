@@ -17,6 +17,18 @@ Content-Type: application/json
     :password
 }
 
-# Login
+# Bad login attemp
 POST :url/login
 Content-Type: application/json
+
+# Successful register attempt
+POST :url/login
+Content-Type: application/json
+
+{
+    :email,
+    :password
+}
+
+# Get all users
+GET :url/users
