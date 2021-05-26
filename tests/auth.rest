@@ -1,4 +1,4 @@
-:url = http://localhost:3000/api
+:url = http://localhost:3000
 :email = "email": "example@localhost.com"
 :password = "password": "hunter3"
 
@@ -35,5 +35,5 @@ Content-Type: application/json
 
 
 # Get all users
-GET :url/users
+GET :url/api/users
 authorization: :token

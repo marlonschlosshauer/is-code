@@ -1,21 +1,10 @@
 require('dotenv').config()
+
 const router = require('express').Router();
+const verify = require('./verify');
 const jwt = require('jsonwebtoken');
 
-const storage = require('./storage');
-
-const verify = (req, res, next) => {
-	const token = req.header('authorization');
-	if (!token) return res.status(401).send('No token found, access denied');
-
-	try {
-		const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-		req.user = verified;
-		next();
-	} catch (err) {
-		return res.status(400).send('Invalid token')
-	}
-}
+const storage = require('../storage');
 
 router.post('/register', (req, res) => {
 	if (req.body?.email && req.body.password) {
@@ -37,13 +26,4 @@ router.post('/login', (req, res) => {
 	res.status(400).send();
 })
 
-router.get('/users', verify, (req, res) => {
-	res.status(200).send(storage.all());
-});
-
-router.get('/', (req, res) => {
-	res.send('Schön hier');
-});
-
 module.exports = router;
-
