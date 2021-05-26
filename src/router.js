@@ -1,4 +1,6 @@
+require('dotenv').config()
 const router = require('express').Router();
+const jwt = require('jsonwebtoken');
 
 const storage = require('./storage');
 
@@ -13,7 +15,8 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
 	if (req.body?.email && req.body.password) {
-		res.status(200).send(`Successfully logged in as ${req.body.email}`);
+		const token = jwt.sign({ _id: req.body.email }, process.env.TOKEN_SECRET)
+		res.header('auth', token).status(200).send(`Successfully logged in as ${req.body.email}`);
 	} else {
 		res.status(400).send('email and password are required');
 	}
