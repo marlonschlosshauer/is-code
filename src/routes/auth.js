@@ -23,11 +23,17 @@ router.post('/register', auth, (req, res) => {
 })
 
 router.post('/login', auth, (req, res) => {
+	// Finde Nutzer
 	const user = users.findOne({ email: req.body.email });
+	// Existiert Nutzer?
 	if (!user) return res.status(400).send(`No user with ${req.body.email} exists`);
+	// Korrektes Passwort?
 	if (user.password != req.body.password) return res.status(400).send(`Incorrect password for ${req.body.email}`);
 
+	// Erstelle Token
 	const token = jwt.sign({ _id: req.body.email }, process.env.TOKEN_SECRET)
+
+	// Antworte mit Token in Body
 	res.header('authorization', token)
 		.status(200)
 		.send({ token, message: `Successfully logged in as ${req.body.email}` });
