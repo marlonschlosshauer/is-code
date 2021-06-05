@@ -5,13 +5,14 @@
   <body>
 	<script src="api.js"></script>
 	<script>
+	 let key = '';
 	 async function onLogin() {
-	   await login (document.getElementById('email').value,
+	   key = await login (document.getElementById('email').value,
 					document.getElementById('password').value);
 	 }
 
 	 async function onReminders() {
-	   await reminders(document.cookie);
+	   await reminders(key);
 	 }
 	</script>
 	<input id="email" email="email" type="text" value=""/>

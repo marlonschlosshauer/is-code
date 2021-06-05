@@ -1,6 +1,6 @@
 const url = 'http://localhost:3000';
 
-const headers = {
+const options = {
 	mode: 'cors',
 	cache: 'no-cache',
 	credentials: 'same-origin',
@@ -10,24 +10,25 @@ const headers = {
 }
 
 async function login(email, password) {
-	let response = await fetch(`${url}/login`,
+	const request = await fetch(`${url}/login`,
 		{
-			...headers,
+			...options,
 			method: 'POST',
 			body: JSON.stringify({ email, password }),
 		});
 
-	document.cookie = await response.json();
+	const response = await request.json();
+	return response.token;
 }
 
 async function reminders(key) {
 	return await fetch(`${url}/api/reminders`,
 		{
-			...headers,
+			...options,
 			method: 'GET',
 			headers: {
 				'authorization': key
 			}
 		}
-	).json();
+	);
 }
