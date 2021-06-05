@@ -5,6 +5,14 @@ const router = require('express').Router();
 const passport = require('passport')
 const Github = require('passport-github2').Strategy;
 
+passport.serializeUser((user, cb) => {
+	cb(null, user);
+})
+
+
+passport.deserializeUser((user, cb) => {
+	cb(null, user);
+})
 
 passport.use(new Github({
 	clientID: process.env.GITHUB_CLIENT,
@@ -16,6 +24,7 @@ passport.use(new Github({
 		done(null, profile);
 	}
 ));
+
 
 router.get('/',
 	passport.authenticate('github', { scope: ['user:email'] }));

@@ -8,11 +8,11 @@
 GET :url
 
 # Bad register attempt
-POST :url/register
+POST :url/auth/register
 Content-Type: application/json
 
 # Successful register attempt
-POST :url/register
+POST :url/auth/register
 Content-Type: application/json
 
 {
@@ -21,11 +21,11 @@ Content-Type: application/json
 }
 
 # Bad login attemp
-POST :url/login
+POST :url/auth/login
 Content-Type: application/json
 
 # Successful login attempt
-POST :url/login
+POST :url/auth/login
 Content-Type: application/json
 
 {
