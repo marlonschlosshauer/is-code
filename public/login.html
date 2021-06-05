@@ -1,0 +1,60 @@
+<html lang="de">
+  <head>
+	<meta charset="utf-8">
+  </head>
+  <body>
+	<script>
+	 const url = 'http://localhost:3000';
+
+	 const options = {
+	   mode: 'cors',
+	   cache: 'no-cache',
+	   credentials: 'same-origin',
+	   headers: {
+		 'Content-Type': 'application/json'
+	   },
+	 }
+
+	 async function login(email, password) {
+	   const request = await fetch(`${url}/auth/login`,
+								   {
+									 ...options,
+									 method: 'POST',
+									 body: JSON.stringify({ email, password }),
+	   });
+
+	   const response = await request.json();
+	   return response.token;
+	 }
+
+	 async function reminders(key) {
+	   return await fetch(`${url}/api/reminders`,
+						  {
+							...options,
+							method: 'GET',
+							headers: {
+							  'authorization': key
+							}
+						  }
+	   );
+	 }
+
+	 let key = '';
+	 async function onLogin() {
+	   key = await login (document.getElementById('email').value,
+						  document.getElementById('password').value);
+	 }
+
+	 async function onReminders() {
+	   await reminders(key);
+	 }
+	</script>
+	<input id="email" email="email" type="text" value=""/>
+	<input id="password" email="password" type="password" value=""/>
+	<button id="login" onClick="onLogin()">Login</button>
+
+	<a id="github" href="/auth/github">Login with Github</a>
+
+	<button id="reminder" onClick="onReminders()">Request</button>
+  </body>
+</html>
