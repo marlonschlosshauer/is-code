@@ -24,7 +24,7 @@ Content-Type: application/json
 POST :url/login
 Content-Type: application/json
 
-# Successful register attempt
+# Successful login attempt
 POST :url/login
 Content-Type: application/json
 
@@ -32,7 +32,6 @@ Content-Type: application/json
     :email,
     :password
 }
-
 
 # Get all reminderes
 GET :url/api/reminders

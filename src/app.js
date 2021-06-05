@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyparser = require('body-parser');
 const app = express();
 const auth = require('./routes/auth');
@@ -6,6 +7,7 @@ const resources = require('./routes/resources');
 
 const port = 3000;
 
+app.use(cors());
 app.use(bodyparser.json())
 app.use('/', auth);
 app.use('/api', resources);
