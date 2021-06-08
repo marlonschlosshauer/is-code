@@ -9,7 +9,6 @@ passport.serializeUser((user, cb) => {
 	cb(null, user);
 })
 
-
 passport.deserializeUser((user, cb) => {
 	cb(null, user);
 })
@@ -25,14 +24,12 @@ passport.use(new Github({
 	}
 ));
 
-
 router.get('/',
 	passport.authenticate('github', { scope: ['user:email'] }));
 
 router.get('/callback',
 	passport.authenticate('github', { failureRedirect: '/login' }),
 	function(req, res) {
-		// Successful authentication, redirect home.
 		res.redirect('/');
 	});
 
